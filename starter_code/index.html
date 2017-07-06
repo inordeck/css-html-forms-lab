@@ -100,35 +100,101 @@
 		function makeResults() {
 
 			$( "<section class='container results'><h1>A True Story:</h1>" ).appendTo(main);
+			};
 
 			// JS Native:
 			// var results = document.createElement('section');
 			// results.innerHTML = '<h1>' + 'A true story:' + '</h1>';
 			// results.className = 'container results';
 			// main.appendChild(results);
-		};
+
 
 		$("form").on("submit", function(event){
 
 		    // Stop the form from submitting
+		    event.preventDefault();
 
 	    	// Run the 'makeResults' function seen above
+	    	makeResults();
 
-	    	/*
-			
-				For each value entered into a form input, add the input to the corresponding sentence, then append the text into the results section:
+/*
+For each value entered into a form input, add the input to the corresponding sentence, then append the text into the results section:
+*/
 
-				"Once upon a time there was a Developer named NAME."
+// "Once upon a time there was a Developer named NAME."
+				/* // declare var of name to get input value // */
+			var name = $("input#name").val();
 
-				"NAME came to General Asssembly to VERB1 the great mountain of programming knowledge."
+				/* // test // */
+			console.log(name);
 
-				""MISSION", NAME shouted."
-	
-				"Though SENTIMENT, NAME was able to overcome all obstacles with the power of their NOUN."
+				/* // create <p> and append with results from name // */
+			$('.results').append('<p>').append("Once upon a time there was a Developer named " + name + ".");
 
-				"In the end, their success can be contributed entirely to their " + ADJECTIVE2[list each one checked, comma-separated] + NOUN2."
 
-	    	*/ 
+// "NAME came to General Asssembly to VERB1 the great mountain of programming knowledge."
+			 	/* // declare var of verb1 to get input from selector menu // */
+			var verb1 = $("select#verb-1").val();
+
+				/* // test // */
+			console.log(verb1);
+
+				/* // create <p> and append it with results from name and verb1 // */
+			$('.results').append('<p>').append(name + " came to General Asssembly to " + verb1 + " the great mountain of programming knowledge.");
+
+
+// ""MISSION", NAME shouted."
+				/* // declare var with value from mission text area // */
+			var mission = $("textarea#mission").val();
+
+				/* // test // */
+			console.log(mission);
+
+				/* // create <p> and append it with values from mission and name // */
+			$('.results').append('<p>').append(mission + ", " + name + " shouted.");
+
+
+// "Though SENTIMENT, NAME was able to overcome all obstacles with the power of their NOUN."
+
+				/* // declare var selectedRadio*/
+			var selectedRadio = "";
+			var selected = $("input[type='radio'][name='radioButtons']:checked");
+			if (selected.length > 0) {
+				selectedRadio = selected.val();
+			/*
+			FROM STACK OVERFLOW:
+			var checkedValue = radios.filter(':checked').val();
+			var radios = $('input:radio:checked.group1').map(function() {
+				radios.push(group1.value);
+			});
+			*/
+				/* // declare var with input from noun1 // */
+			var noun1 = $("input#noun-1").val();
+
+				/* // test // */
+			console.log(selectedRadio);
+			console.log(checkedValue);
+
+				/* // create <p> and append it with results from radios, name and noun1 // */
+			$('.results').append('<p>').append("Though " + selectedRadio + ", " + name + " was able to overcome all obstacles with the power of their " + noun1 + ".");
+
+
+// "In the end, their success can be contributed entirely to their " + ADJECTIVE2[list each one checked, comma-separated] + NOUN2."
+
+				/* // declare var with input entered in noun-2 // */
+			var check = $('input:checkbox:checked.group2').map(function() {
+				check.push(group2.value);
+			});
+
+				/* // declare var with input from noun1 // */
+			var noun2 = $("input#noun-2").val();
+
+				/* // test // */
+			console.log(check);
+			console.log(noun2);
+
+				/* // create <p> and append it with entered results from check and noun2 // */
+			$('.results').append('<p>').append("In the end, their success can be contributed entirely to their " + check+ ", " + noun2 + ".");
 		});
 	</script>
 
