@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>CSS HTML Forms Lab</title>
-	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Proza+Libre:400,400i,600,800" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<section id="main">
@@ -84,7 +86,7 @@
 				    	<input id="noun-2" name="noun-2">
 					</div>
 					<div class="row formGroup">
-				    	<input type="submit">
+				    	<button id="submitButton" type="submit">Create Story</button>
 				    </div>
 				    
 			    </div>
@@ -158,22 +160,15 @@ For each value entered into a form input, add the input to the corresponding sen
 
 				/* // declare var selectedRadio*/
 			var selectedRadio = "";
-			var selected = $("input[type='radio'][name='radioButtons']:checked");
-			if (selected.length > 0) {
-				selectedRadio = selected.val();
-			/*
-			FROM STACK OVERFLOW:
-			var checkedValue = radios.filter(':checked').val();
-			var radios = $('input:radio:checked.group1').map(function() {
-				radios.push(group1.value);
-			});
-			*/
+			var selected = $("input[type='radio']:checked");
+			selectedRadio = selected.val();
+			
 				/* // declare var with input from noun1 // */
 			var noun1 = $("input#noun-1").val();
 
 				/* // test // */
 			console.log(selectedRadio);
-			console.log(checkedValue);
+			console.log(noun1);
 
 				/* // create <p> and append it with results from radios, name and noun1 // */
 			$('.results').append('<p>').append("Though " + selectedRadio + ", " + name + " was able to overcome all obstacles with the power of their " + noun1 + ".");
@@ -181,20 +176,21 @@ For each value entered into a form input, add the input to the corresponding sen
 
 // "In the end, their success can be contributed entirely to their " + ADJECTIVE2[list each one checked, comma-separated] + NOUN2."
 
-				/* // declare var with input entered in noun-2 // */
-			var check = $('input:checkbox:checked.group2').map(function() {
-				check.push(group2.value);
-			});
+				/* // declare var with input entered in noun-2 // i cannot figure out how to show the value //*/
+			var checked = $("input[type='checkbox']:checked").each(function() {
+				console.log(this.value);
+				return this.value;
+				}).get().join(", ");
 
 				/* // declare var with input from noun1 // */
 			var noun2 = $("input#noun-2").val();
 
 				/* // test // */
-			console.log(check);
+			console.log(checked);
 			console.log(noun2);
 
 				/* // create <p> and append it with entered results from check and noun2 // */
-			$('.results').append('<p>').append("In the end, their success can be contributed entirely to their " + check+ ", " + noun2 + ".");
+			$('.results').append('<p>').append("In the end, their success can be contributed entirely to their " + checked + ", " + noun2 + ".");
 		});
 	</script>
 
