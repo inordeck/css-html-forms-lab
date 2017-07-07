@@ -177,10 +177,9 @@ For each value entered into a form input, add the input to the corresponding sen
 // "In the end, their success can be contributed entirely to their " + ADJECTIVE2[list each one checked, comma-separated] + NOUN2."
 
 				/* // declare var with input entered in noun-2 // i cannot figure out how to show the value //*/
-			var checked = $("input[type='checkbox']:checked").each(function() {
-				console.log(this.value);
-				return this.value;
-				}).get().join(", ");
+			var checked = $("input[type='checkbox']:checked").map(function() {
+				console.log(checked);
+				return this.value;}).get().join(", ");
 
 				/* // declare var with input from noun1 // */
 			var noun2 = $("input#noun-2").val();
